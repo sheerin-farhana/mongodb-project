@@ -21,6 +21,7 @@ exports.postAddProduct = async (req, res, next) => {
     price: price,
     description: description,
     imageUrl: imageUrl,
+    userId: req.user,
   });
   try {
     const result = await product.save();
@@ -78,6 +79,7 @@ exports.postEditProduct = async (req, res, next) => {
 exports.getProducts = async (req, res, next) => {
   try {
     const products = await Product.find();
+    // console.log(products);
     res.render("admin/products", {
       prods: products,
       pageTitle: "Admin Products",
